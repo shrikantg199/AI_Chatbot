@@ -63,18 +63,18 @@ const Chat: React.FC = () => {
             messages.map((message, id) => (
               <div
                 key={id}
-                className={`mb-4 ${
+                className={`mb-4 w-auto ${
                   message.user === "user" ? "self-end" : "self-start"
                 }`}
               >
                 <p
-                  className={`px-4 py-2 rounded-lg h-auto ${
+                  className={`px-4 py-2 rounded-lg py-auto ${
                     message.user === "user"
                       ? "bg-gray-400/10 w-[50%]  ml-auto text-white"
-                      : "bg-gray-200 w-[70%]  text-gray-800"
+                      : "bg-gray-200 w-[70%] mr-auto text-gray-800"
                   }`}
                 >
-                {message.messages.replace(/\*/g, '')}
+                  {message.messages.replace(/\*/g, "")}
                 </p>
               </div>
             ))

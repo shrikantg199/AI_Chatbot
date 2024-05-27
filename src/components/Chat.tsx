@@ -74,7 +74,7 @@ const Chat: React.FC = () => {
                       : "bg-gray-200 w-[70%]  text-gray-800"
                   }`}
                 >
-                  {message.messages}
+                {message.messages.replace(/\*/g, '')}
                 </p>
               </div>
             ))

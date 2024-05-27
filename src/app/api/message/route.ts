@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const geminiApiKey = process.env.GEMINI_API_KEY;
+const geminiModel = process.env.GEMINI_MODEL;
+
+if (!geminiApiKey || !geminiModel) {
+    throw new Error("Gemini API key or model name is not defined in the environment variables.");
+}
+
+const genAI = new GoogleGenerativeAI(geminiApiKey);
 
 export const GET = async (req: NextRequest) => {
   return NextResponse.json({ message: "hello" });
 };
+
 export const POST = async (req: NextRequest) => {
-  const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
+  const model = genAI.getGenerativeModel({ model: geminiModel });
   try {
     const { prompt } = await req.json();
     console.log(prompt);

@@ -1,33 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.loader {
+  width: 2px;
+  height: 10px;
+  border-radius: 4px;
+  display: block;
+  margin: 20px;
+  position: relative;
+  background: currentColor;
+  color: #fff;
+  box-sizing: border-box;
+  animation: animloader 0.3s 0.3s linear infinite alternate;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.loader::after,
+.loader::before {
+  content: "";
+  width: 1px;
+  height: 2px;
+  border-radius: 4px;
+  background: currentColor;
+  position: absolute;
+
+  left: 20px;
+  box-sizing: border-box;
+  animation: animloader 0.3s 0.45s linear infinite alternate;
+}
+.loader::before {
+  left: -20px;
+  animation-delay: 0s;
+}
+
+@keyframes animloader {
+  0% {
+    height: 20px;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  100% {
+    height: 4px;
   }
 }
